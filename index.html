@@ -1,0 +1,112 @@
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<div id="slider-wrapper">
+<div id="slider">
+<a href="http://canvas.idat.edu.pe" target="blank_"><img src="https://farm9.staticflickr.com/8059/28286750501_dcc27b1332_h_d.jpg" /></a>
+<a href="http://canvas.idat.edu.pe" target="blank_"><img src="https://farm6.staticflickr.com/5812/23394215774_b76cd33a87_h_d.jpg" /></a>
+<a href="http://canvas.idat.edu.pe" target="blank_"><img src="https://farm8.staticflickr.com/7455/27879053992_ef3f41c4a0_h_d.jpg" /></a>
+</div>
+<a href="javascript:void();" class="mas">&rsaquo;</a>
+<a href="javascript:void();" class="menos">&lsaquo;</a></div>
+
+<script>
+$(function(){
+$('#slider a:gt(0)').hide();
+var interval = setInterval(changeDiv, 6000);
+function changeDiv(){
+$('#slider a:first-child').fadeOut(1000).next('a').fadeIn(1000).end().appendTo('#slider');
+};
+$('.mas').click(function(){
+changeDiv();
+clearInterval(interval);
+interval = setInterval(changeDiv, 6000);
+});
+$('.menos').click(function(){
+$('#slider a:first-child').fadeOut(1000);
+$('#slider a:last-child').fadeIn(1000).prependTo('#slider');
+clearInterval(interval);
+interval = setInterval(changeDiv, 6000);
+});
+});
+</script>
+
+<style>
+/* Contenedor general */
+#slider-wrapper {
+position: relative;
+width: 800px;
+max-width: 100%;
+margin: 0 auto;
+padding: 0 10px;
+font-family: arial, sans-serif;
+font-size: 0;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+/* Contenedor slider */
+#slider { 
+position: relative;
+width: 100%;
+padding-bottom: 50%; /* Aspect ratio */
+overflow: hidden;
+border-radius: 2%;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+#slider > a {
+position:absolute;
+top:0;
+left:0;
+width: 100%;
+min-height: 100%;
+}
+/* Ajuste de las imágenes */
+#slider img {
+width: 100%;
+min-height: 100%;
+position: absolute;
+margin:0;
+padding:0; 
+border:0;
+}
+/* Texto que acompaña a cada imagen */
+#slider p {
+position: absolute;
+bottom: 5%;
+left: 0;
+display: block;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+width: 80%;
+height: 18px;
+margin:0;
+padding: 5px 0;
+border-radius: 0 20px 20px 0;
+color: #eee;
+background: #333;
+font-size: 18px;
+line-height: 18px;
+text-align:center;
+}
+/* Flechas de navegación */
+a.mas, a.menos {
+position: absolute;
+top: 50%;
+left: 10px;
+z-index: 10;
+width: 30px;
+height: 30px;
+text-align: center;
+line-height: 30px;
+font-size: 30px;
+color: white;
+background: #333;
+text-decoration: none;
+}
+a.mas {
+left: 100%;
+margin-left: -40px;
+}
+</style>
